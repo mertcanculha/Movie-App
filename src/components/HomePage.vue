@@ -1,43 +1,80 @@
 <template>
-  <div class="searchMovie">
-    <h3>TREND MOVİES</h3>
-    <br /><br /><br />
-    <button @click="getFav">Show Trending Movies</button><br /><br />
-    <div v-if="otpBtnClicked">
-      <table>
-        <tr>
-          <th>Movie Title</th>
-          <th>Movie Year</th>
-          <th>Movie Poster</th>
-          <th>Add Favorite</th>
-          <th>Rate</th>
-          <th>Detail</th>
-        </tr>
-        <tr
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-center">
+
+        <div
+          class="
+            bg-white
+            mt-5
+            rounded
+            shadow-sm
+            d-flex
+            justify-content-between
+            bar
+            p-3
+            align-items-center
+          "
+          style="width: 700px; height: 60px"
+        > 
+     <h4>Populer Movies</h4>
+          <button
+            @click="getFav"
+            class="btn text-light"
+            style="margin-left: 15px;  background: #000"
+          >
+            Click for populer movies
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="trendMovies">
+      <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div
+          class="col"
           v-for="(i, index) in this.$store.state.trendMovies.results"
           :key="index"
         >
-          <td>{{ i.title }}</td>
-          <td>{{ i.release_date }}</td>
-          <td>
+          <div class="card">
             <img
               :src="photoUrl + i.poster_path"
               alt="Movie Poster"
-              class="imgPoster"
+              class="card-img-top"
+              style="width: auto; height: 420px"
             />
-          </td>
-          <td>
-            <button @click="setFavorite(i)">+</button>
-          </td>
-          <td>{{ i.vote_average }}</td>
-          <td>
-            <button @click="detail(i.id)">Detail</button>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div class="searchMovie">
-      <Search />
+            <div class="card-body" style="text-align: center">
+              <h5 class="card-title" style="font-size: 21px">{{ i.title }}</h5>
+              <hr />
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <b>Release Date: </b>{{ i.release_date }}
+                </li>
+                <li class="list-group-item">
+                  <b>Vote Average: </b>{{ i.vote_average }}
+                </li>
+                <li class="d-grid gap-2">
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    @click="setFavorite(i)"
+                  >
+                    Add Favorite
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    @click="detail(i.id)"
+                  >
+                    Detail
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div><Search /></div>
     </div>
   </div>
 </template>
@@ -48,7 +85,6 @@ export default {
   components: { Search },
   data() {
     return {
-      //trendMovie: null,
       otpBtnClicked: false,
       photoUrl: "https://www.themoviedb.org/t/p/original",
     };
@@ -63,7 +99,6 @@ export default {
           console.log(res);
           this.$store.commit("setTrendMovies", res.data);
           this.otpBtnClicked = true;
-          //this.trendMovie = res;
         });
     },
     setFavorite(i) {
@@ -81,9 +116,12 @@ export default {
 <style scoped>
 .imgPoster {
   width: 120px;
-  height: auto;
+  height: 400px;
 }
-.searchMovie {
-  padding: 30px;
+.trendMovies {
+  padding: 5%;
+}
+.container{
+  margin-block-start: 5%;
 }
 </style>

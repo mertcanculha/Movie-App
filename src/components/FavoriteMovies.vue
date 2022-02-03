@@ -1,37 +1,59 @@
 <template>
-  <div class="favoritemovies">
-    <h3>My Favorite Movie</h3>
-    <table>
-      <tr>
-        <th>Movie Title</th>
-        <th>Movie Year</th>
-        <th>Movie Poster</th>
-        <th>Rate</th>
-        <th>Delete</th>
-        <th>Detail</th>
-      </tr>
-
-      <tr v-for="(i, index) in this.$store.state.favoriteMovies" :key="index">
-        <td>{{ i.title }}</td>
-        <td>{{ i.release_date }}</td>
-        <td>
+  <div class="container">
+    <h3 class="favoriteTitle" style="padding:5%">My Favorite Movies</h3>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div
+        class="col"
+        v-for="(i, index) in this.$store.state.favoriteMovies"
+        :key="index"
+      >
+        <div class="card">
           <img
             :src="photoUrl + i.poster_path"
             alt="Movie Poster"
-            class="imgPoster"
+            class="card-img-top"
+            style=" width: auto; height: 420px;  !important;"
           />
-        </td>
-        <td>{{ i.vote_average }}</td>
-        <td>
-          <button @click="deleteFav(index)">-</button>
-        </td>
-        <td>
-          <button @click="detail(i.id)">Detail</button>
-        </td>
-      </tr>
-    </table>
-    <br />
-    <button @click="goSearch">Go Search</button>
+          <div class="card-body" style="text-align: center">
+            <h5 class="card-title">{{ i.title }}</h5>
+            <hr />
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <b>Release Date: </b>{{ i.release_date }}
+              </li>
+              <li class="list-group-item">
+                <b>Vote Average: </b>{{ i.vote_average }}
+              </li>
+
+              <li class="d-grid gap-2">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  @click="detail(i.id)"
+                >
+                  Detail
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  @click="deleteFav(index)"
+                >
+                  Delete Favorite
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+<div style="margin: auto; padding:5%;">  <button
+      @click="goSearch"
+      class="btn text-light"
+      style="margin-left: 15px;  background: #000"
+    >
+      Go Search
+    </button></div>
+  
   </div>
 </template>
 
@@ -57,24 +79,11 @@ export default {
 };
 </script>
 <style scopred>
-.imgPoster {
-  width: 50px;
-  height: auto;
+.favoriteMovies {
+  padding: 50px;
 }
-table,
-th,
-td {
-  border: 2px solid black;
-  border-collapse: collapse;
-}
-th,
-td {
-  padding: 5px;
-}
-.favoritemovies {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
+.favoriteTitle {
+  text-align-last: center;
+  margin-bottom: 3%;
 }
 </style>

@@ -11,6 +11,7 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
+      
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -20,6 +21,7 @@
               <a class="nav-link">Home Page</a>
             </li>
           </router-link>
+          
           <router-link nav-item tag="li" to="/moviedetail">
             <li class="nav-item">
               <a class="nav-link">Movie Detail</a>

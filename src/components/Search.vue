@@ -1,37 +1,87 @@
 <template>
-  <div class="searchMovie">
-    <input placeholder="Movie" v-model="searchMovie" />
-    <br />
-    <button @click="getMovie">Search Movie</button><br /><br />
-    <div v-if="otpBtnClicked">
-      <table>
-        <tr>
-          <th>Movie Title</th>
-          <th>Movie Year</th>
-          <th>Movie Poster</th>
-          <th>Add Favorite</th>
-          <th>Rate</th>
-        </tr>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-center">
+        <div
+          class="
+            bg-white
+            mt-5
+            rounded
+            shadow-sm
+            d-flex
+            justify-content-between
+            bar
+            p-3
+            align-items-center
+          "
+          style="width: 700px; height: 60px; margin-bottom: 50px"
+        >
+          <input
+            type="text"
+            v-model="searchMovie"
+            class="form-control"
+            style="width: 100%"
+            placeholder="Enter Movie or series"
+          />
+          <button
+            @click="getMovie"
+            class="btn text-light"
+            style="margin-left: 15px; background: #000"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
 
-        <tr
+    <div class="trendMovies">
+      <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div
+          class="col"
           v-for="(i, index) in this.$store.state.searchRes.results"
           :key="index"
         >
-          <td>{{ i.title }}</td>
-          <td>{{ i.release_date }}</td>
-          <td>
+          <div class="card">
             <img
               :src="photoUrl + i.poster_path"
               alt="Movie Poster"
-              class="imgPoster"
+              class="card-img-top"
+              style="width: auto; height: 420px"
             />
-          </td>
-          <td>
-            <button @click="setFavorite(i)">+</button>
-          </td>
-          <td>{{ i.popularity }}</td>
-        </tr>
-      </table>
+            <div class="card-body" style="text-align: center">
+              <h5 class="card-title" style="font-size: 21px">{{ i.title }}</h5>
+              <hr />
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <b>Release Date: </b>{{ i.release_date }}
+                </li>
+                <li class="list-group-item">
+                  <b>Popularity: </b>{{ i.popularity }}
+                </li>
+                <li class="list-group-item">
+                  <b>Language: </b>{{ i.original_language }}
+                </li>
+                <li class="d-grid gap-2">
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    @click="setFavorite(i)"
+                  >
+                    Add Favorite
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    @click="detail(i.id)"
+                  >
+                    Detail
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -65,19 +115,19 @@ export default {
     goFav() {
       this.$router.push("/favorite");
     },
+    detail(id) {
+      this.$store.commit("setImdbID", id);
+      this.$router.push("/detail");
+    },
   },
 };
 </script>
-<style scopred>
-.imgPoster {
+<style scoped>
+.imgPosters {
   width: 120px;
-  height: auto;
+  height: 400px;
 }
-
 .searchMovie {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
+  padding: 5%;
 }
 </style>

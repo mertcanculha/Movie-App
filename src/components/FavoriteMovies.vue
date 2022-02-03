@@ -79,9 +79,6 @@ export default {
 };
 </script>
 <style scopred>
-.favoriteMovies {
-  padding: 50px;
-}
 .favoriteTitle {
   text-align-last: center;
   margin-bottom: 3%;

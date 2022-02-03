@@ -1,12 +1,12 @@
 <template>
   <div class="container">
     <div class="row d-flex justify-content-center">
-      <div class="col-md-9 bg-white shadow-sm mt-3 mb-5 p-4"> 
-         <h3>{{detailMovie.data.original_title}}</h3> <br>
+      <div class="col-md-9 bg-white shadow-sm mt-3 mb-5 p-4">
+        <h3>{{ detailMovie.data.original_title }}</h3>
+        <br />
         <div class="d-flex">
           <img
             :src="photoUrl + detailMovie.data.poster_path"
-            class="imgPoster"
             style="width: 350px"
           />
           <div style="margin-left: 30px; width: 100%">
@@ -49,8 +49,8 @@
               <li class="list-group-item">
                 <strong>Revenue: </strong>{{ detailMovie.data.revenue }}$
               </li>
-                <li class="list-group-item">
-                <strong>Home Page: </strong>  {{ detailMovie.data.homepage }}
+              <li class="list-group-item">
+                <strong>Home Page: </strong> {{ detailMovie.data.homepage }}
               </li>
             </ul>
           </div>
@@ -72,8 +72,6 @@
               {{ detailMovie.data.tagline }}
             </li>
           </ul>
-
-      
         </div>
       </div>
     </div>
@@ -104,22 +102,4 @@ export default {
 </script>
 
 <style scoped>
-.imgPoster {
-  width: 250px;
-  height: auto;
-}
-.detailPage {
-  display: flex;
-  flex-direction: row;
-}
-.imgRow {
-  display: flex;
-  justify-content: center;
-  width: 20%;
-  padding-top: 20px;
-}
-.infoRow {
-  width: 60%;
-  padding-top: 50px;
-}
 </style>

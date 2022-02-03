@@ -2,7 +2,6 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 d-flex justify-content-center">
-
         <div
           class="
             bg-white
@@ -16,12 +15,12 @@
             align-items-center
           "
           style="width: 700px; height: 60px"
-        > 
-     <h4>Populer Movies</h4>
+        >
+          <h4>Populer Movies</h4>
           <button
             @click="getFav"
             class="btn text-light"
-            style="margin-left: 15px;  background: #000"
+            style="margin-left: 15px; background: #000"
           >
             Click for populer movies
           </button>
@@ -85,7 +84,6 @@ export default {
   components: { Search },
   data() {
     return {
-      otpBtnClicked: false,
       photoUrl: "https://www.themoviedb.org/t/p/original",
     };
   },
@@ -102,7 +100,6 @@ export default {
         });
     },
     setFavorite(i) {
-      //console.log(i);
       this.$store.commit("setFavoriteMovie", i);
     },
     detail(id) {
@@ -114,14 +111,10 @@ export default {
 </script>
 
 <style scoped>
-.imgPoster {
-  width: 120px;
-  height: 400px;
-}
 .trendMovies {
   padding: 5%;
 }
-.container{
+.container {
   margin-block-start: 5%;
 }
 </style>

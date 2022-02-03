@@ -109,7 +109,6 @@ export default {
         });
     },
     setFavorite(i) {
-      //console.log(i);
       this.$store.commit("setFavoriteMovie", i);
     },
     goFav() {
@@ -123,11 +122,4 @@ export default {
 };
 </script>
 <style scoped>
-.imgPosters {
-  width: 120px;
-  height: 400px;
-}
-.searchMovie {
-  padding: 5%;
-}
 </style>
